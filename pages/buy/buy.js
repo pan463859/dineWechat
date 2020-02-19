@@ -17,6 +17,15 @@ Page({
     activeIndex: 0,
     sliderOffset: 0,
     sliderLeft: 0,
+    taste:'',
+    tastearray:[
+      '酸',
+      '甜',
+      '苦',
+      '辣'
+    ],
+    searchfoodList:[],
+    
     sliderWidth: 0.5,
     // 左右两侧菜单的初始显示次序
     curNav: 0,
@@ -29,6 +38,7 @@ Page({
     hasList: false, // 列表是否有数据
     totalPrice: 0, // 总价，初始为0
     totalNum: 0, //总数，初始为0
+    inputVal:"",
     // 购物车动画
     animationData: {},
     animationMask: {},
@@ -37,6 +47,7 @@ Page({
 
   },
   onLoad: function (options) {
+    debugger
     if (options.tableNum) {
       tableNum = options.tableNum;
       console.log("桌号:", tableNum)
@@ -151,6 +162,7 @@ Page({
 
   // 购物车增加数量
   addCount: function (e) {
+    debugger
     //点加号之前必须先扫码桌号
     if (!tableNum) {
       wx.showModal({
@@ -454,7 +466,82 @@ Page({
     var r = window.location.search.substr(1).match(reg);
     if (r != null) return unescape(r[2]);
     return null;
+  },
+ showInput: function () {
+    this.setData({
+      inputShowed: true
+    });
+  },
+  hideInput: function () {
+    this.setData({
+      inputVal: "",
+      inputShowed: false
+    });
+    // getList(this);
+  },
+  clearInput: function () {
+    this.setData({
+      inputVal: ""
+    });
+    // getList(this);
+  },
+  inputTyping: function (e) {
+    //搜索数据
+    // getList(this, e.detail.value);
+    this.setData({
+      inputVal: e.detail.value
+    });
+  },
+  chooseTaste: function (e){
+    var that = this
+    that.setData({
+      taste: e.currentTarget.id
+    })
+    categories = []
+    // 获取右侧菜品列表数据
+    var resFood = []
+    wx.request({
+      url: app.globalData.baseUrl + '/buyer/product/list',
+      data: {
+        taste: e.currentTarget.id
+      },
+      success(res) {
+        if (res && res.data && res.data.data && res.data.data.length > 0) {
+          let dataList = res.data.data;
+          console.log(dataList)
+          //遍历
+          dataList.forEach((item, index) => {
+            item.id = index;
+            categories.push(item);
+            if (index == 0) {
+              resFood = item.foods; //默认选中第一项
+            }
+            item.foods.forEach((food, index) => {
+              food.quantity = 0;
+            });
+
+          });
+
+          that.setData({
+            menu_list: categories,
+            foodList: resFood,
+            inputShowed: false,
+          })
+        } else {
+          that.setData({
+            menu_list: [],
+            foodList: [],
+            inputShowed: false,
+          })
+          wx.showLoading({
+            title: '数据为空',
+          })
+          setTimeout(function(){
+            wx.hideLoading()
+          },2000)
+        }
+      }
+    });
+
   }
-
-
 })
