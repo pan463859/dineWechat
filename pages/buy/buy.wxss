@@ -2,7 +2,13 @@
 @import '../../wxss/common.wxss';
 
 /**app.wxss**/
-
+.swiper-container {
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  z-index:100;
+  padding: 8px;
+}
 .container {
   height: 100%;
   display: flex;
@@ -55,7 +61,7 @@
 
 .tab_style {
   position: fixed;
-  top: 148rpx;
+  top: 248rpx;
   color: #000;
   background-color: #fef4d1;
   height: 80rpx;
@@ -103,7 +109,7 @@
   bottom: 0;
   background: #eee;
   overflow: auto;
-  padding-top: 315rpx;
+  padding-top: 415rpx;
   padding-bottom: 140rpx;
 }
 
@@ -132,7 +138,7 @@
   bottom: 0rpx;
   background: #ebebeb;
   overflow: auto;
-  padding-top: 315rpx;
+  padding-top: 415rpx;
   padding-bottom: 80rpx;
 }
 
@@ -550,7 +556,7 @@
   position: fixed;
   padding: 5px 8px 5px;
   background: #eee;
-  padding-top: 240rpx;
+  padding-top: 340rpx;
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
@@ -640,7 +646,7 @@
   align-items: center;
   justify-content: space-between;
   background-color: white;
-  padding-top: 290rpx;
+  padding-top: 390rpx;
 }
 
 .weui-search-bar__taste_button {

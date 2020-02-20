@@ -68,28 +68,6 @@ Page({
     })
   },
   onLoad() {
-    this.getTopBanner();
+   
   },
-
-  getTopBanner() {
-    let that = this;
-    wx.request({
-      url: app.globalData.baseUrl + '/picture/getAll',
-      success: function(res) {
-        if (res && res.data && res.data.data && res.data.data.length > 0) {
-          let dataList = res.data.data;
-          console.log(dataList)
-          that.setData({
-            banner: dataList
-          })
-        } else {
-          that.setData({
-            list: []
-          })
-        }
-      }
-    })
-  }
-
-
 })

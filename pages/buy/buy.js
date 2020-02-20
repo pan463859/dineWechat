@@ -40,7 +40,7 @@ Page({
       }
     ],
     searchfoodList: [],
-
+    banner:[],
     sliderWidth: 0.5,
     // 左右两侧菜单的初始显示次序
     curNav: 0,
@@ -62,6 +62,7 @@ Page({
 
   },
   onLoad: function(options) {
+    this.getTopBanner();
     if (options.tableNum) {
       tableNum = options.tableNum;
       console.log("桌号:", tableNum)
@@ -160,7 +161,25 @@ Page({
       activeIndex: e.currentTarget.id
     });
   },
-
+  getTopBanner: function(e) {
+    let that = this;
+    wx.request({
+      url: app.globalData.baseUrl + '/picture/getAll',
+      success: function(res) {
+        if (res && res.data && res.data.data && res.data.data.length > 0) {
+          let dataList = res.data.data;
+          console.log(dataList)
+          that.setData({
+            banner: dataList
+          })
+        } else {
+          that.setData({
+            list: []
+          })
+        }
+      }
+    })
+  },
   // 点击切换右侧数据
   changeRightMenu: function(e) {
     var classify = e.target.dataset.id; // 获取点击项的id

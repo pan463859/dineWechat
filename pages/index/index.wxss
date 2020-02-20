@@ -5,9 +5,7 @@
   font-size: 48px;
 }
 
-.swiper-container {
-  padding: 8px;
-}
+
 
 .store_content {
 }
