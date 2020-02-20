@@ -2,13 +2,14 @@
 @import '../../wxss/common.wxss';
 
 /**app.wxss**/
+
 .swiper-container {
-  position: fixed;
+  position: relative;
   top: 0px;
-  width: 100%;
-  z-index:100;
+  z-index: 100;
   padding: 8px;
 }
+
 .container {
   height: 100%;
   display: flex;
@@ -60,8 +61,7 @@
 }
 
 .tab_style {
-  position: fixed;
-  top: 248rpx;
+  position: relative;
   color: #000;
   background-color: #fef4d1;
   height: 80rpx;
@@ -99,20 +99,6 @@
   color: transparent;
 } */
 
-/*左侧  */
-
-.left-cont {
-  width: 23%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  background: #eee;
-  overflow: auto;
-  padding-top: 415rpx;
-  padding-bottom: 140rpx;
-}
-
 .classify {
   width: 100%;
   height: 76rpx;
@@ -127,19 +113,30 @@
   border-left: 6rpx #25ccf7 solid;
 }
 
+.content_container {
+  position: relative;
+}
+
+/*左侧  */
+
+.left-cont {
+  float: left;
+  width: 23%;
+  background: #eee;
+  padding-bottom: 1000px;
+  margin-bottom: -1000px;
+  overflow: hidden;
+}
+
 /*右侧  */
 
 .right-cont {
+  float: right;
   width: 77%;
-  position: fixed;
-  margin-left: 25%;
-  top: 0rpx;
-  right: 0rpx;
-  bottom: 0rpx;
+  padding-bottom: 1000px;
+  margin-bottom: -1000px;
   background: #ebebeb;
-  overflow: auto;
-  padding-top: 415rpx;
-  padding-bottom: 80rpx;
+  overflow: hidden;
 }
 
 .img_box {
@@ -372,8 +369,7 @@
   margin-left: 40rpx;
   font-size: 14px;
   padding-bottom: 10rpx;
-  color: #25ccf7
-;
+  color: #25ccf7;
 }
 
 .price-box {
@@ -553,10 +549,9 @@
 }
 
 .weui-search-bar {
-  position: fixed;
+  position: relative;
   padding: 5px 8px 5px;
   background: #eee;
-  padding-top: 340rpx;
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
@@ -639,14 +634,15 @@
 }
 
 .weui-search-bar__taste {
-  position: fixed;
+  position: absolute;
+  top: 42px;
+  margin-left: -8px;
   width: 100%;
   height: 100px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   background-color: white;
-  padding-top: 390rpx;
 }
 
 .weui-search-bar__taste_button {
