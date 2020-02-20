@@ -78,8 +78,8 @@
       <!--搜索框 -->
       <view class="weui-search-bar__taste" hidden="{{!inputShowed}}">
         <block wx:for="{{tastearray}}" wx:key="*this">
-          <button id="{{index}}" bindtap="chooseTaste">
-            {{item}}
+          <button class="{{ item.checked ? 'button_select' : 'button_unselect'}}" id="{{index}}" bindtap="chooseTaste">
+            {{item.name}}
           </button>
         </block>
       </view>

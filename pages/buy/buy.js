@@ -17,15 +17,30 @@ Page({
     activeIndex: 0,
     sliderOffset: 0,
     sliderLeft: 0,
-    taste:'',
-    tastearray:[
-      '酸',
-      '甜',
-      '苦',
-      '辣'
+    taste: undefined,
+    tastearray: [{
+        id: 0,
+        name: '酸',
+        checked: false
+      },
+      {
+        id: 1,
+        name: '甜',
+        checked: false
+      },
+      {
+        id: 2,
+        name: '苦',
+        checked: false
+      },
+      {
+        id: 3,
+        name: '辣',
+        checked: false
+      }
     ],
-    searchfoodList:[],
-    
+    searchfoodList: [],
+
     sliderWidth: 0.5,
     // 左右两侧菜单的初始显示次序
     curNav: 0,
@@ -38,7 +53,7 @@ Page({
     hasList: false, // 列表是否有数据
     totalPrice: 0, // 总价，初始为0
     totalNum: 0, //总数，初始为0
-    inputVal:"",
+    inputVal: "",
     // 购物车动画
     animationData: {},
     animationMask: {},
@@ -46,8 +61,7 @@ Page({
     maskFlag: true,
 
   },
-  onLoad: function (options) {
-    debugger
+  onLoad: function(options) {
     if (options.tableNum) {
       tableNum = options.tableNum;
       console.log("桌号:", tableNum)
@@ -129,7 +143,7 @@ Page({
     })
 
     wx.getSystemInfo({
-      success: function (res) {
+      success: function(res) {
         that.setData({
           sliderLeft: (res.windowWidth / that.data.tabs.length - res.windowWidth / 2) / 2,
           sliderOffset: res.windowWidth / that.data.tabs.length * that.data.activeIndex,
@@ -140,7 +154,7 @@ Page({
 
 
   // 点击切换顶部tab
-  tabClick: function (e) {
+  tabClick: function(e) {
     this.setData({
       sliderOffset: e.currentTarget.offsetLeft,
       activeIndex: e.currentTarget.id
@@ -148,7 +162,7 @@ Page({
   },
 
   // 点击切换右侧数据
-  changeRightMenu: function (e) {
+  changeRightMenu: function(e) {
     var classify = e.target.dataset.id; // 获取点击项的id
     var foodList = this.data.foodList;
     let foods = categories[classify].foods;
@@ -161,15 +175,14 @@ Page({
   },
 
   // 购物车增加数量
-  addCount: function (e) {
-    debugger
+  addCount: function(e) {
     //点加号之前必须先扫码桌号
     if (!tableNum) {
       wx.showModal({
         title: '提示',
         content: '请到首页扫码点餐',
         showCancel: false, //去掉取消按钮
-        success: function (res) {
+        success: function(res) {
           if (res.confirm) {
             wx.switchTab({
               url: '../index/index',
@@ -224,7 +237,7 @@ Page({
     this.getTotalPrice();
   },
   // 定义根据id删除数组的方法
-  removeByValue: function (array, val) {
+  removeByValue: function(array, val) {
     for (var i = 0; i < array.length; i++) {
       if (array[i].id == val) {
         array.splice(i, 1);
@@ -233,7 +246,7 @@ Page({
     }
   },
   // 购物车减少数量
-  minusCount: function (e) {
+  minusCount: function(e) {
     var id = e.currentTarget.dataset.id;
     var arr = wx.getStorageSync('cart') || [];
     for (var i in this.data.foodList) {
@@ -275,7 +288,7 @@ Page({
     this.getTotalPrice();
   },
   // 获取购物车总价、总数
-  getTotalPrice: function () {
+  getTotalPrice: function() {
     var cartList = this.data.cartList; // 获取购物车列表
     var totalP = 0;
     var totalN = 0
@@ -290,7 +303,7 @@ Page({
     });
   },
   // 清空购物车
-  cleanList: function (e) {
+  cleanList: function(e) {
     for (var i in this.data.foodList) {
       this.data.foodList[i].quantity = 0;
     }
@@ -310,7 +323,7 @@ Page({
   },
 
   //删除购物车单项
-  deleteOne: function (e) {
+  deleteOne: function(e) {
     var id = e.currentTarget.dataset.id;
     var index = e.currentTarget.dataset.index;
     var arr = wx.getStorageSync('cart')
@@ -344,7 +357,7 @@ Page({
     this.getTotalPrice()
   },
   //切换购物车开与关
-  cascadeToggle: function () {
+  cascadeToggle: function() {
     var that = this;
     var arr = this.data.cartList
     if (arr.length > 0) {
@@ -359,7 +372,7 @@ Page({
 
   },
   // 打开购物车方法
-  cascadePopup: function () {
+  cascadePopup: function() {
     var that = this;
     // 购物车打开动画
     var animation = wx.createAnimation({
@@ -386,7 +399,7 @@ Page({
     });
   },
   // 关闭购物车方法
-  cascadeDismiss: function () {
+  cascadeDismiss: function() {
     var that = this
     // 购物车关闭动画
     that.animation.translate(0, 285).step();
@@ -405,13 +418,13 @@ Page({
     });
   },
   // 跳转确认订单页面
-  gotoOrder: function () {
+  gotoOrder: function() {
     if (!tableNum) {
       wx.showModal({
         title: '提示',
         content: '请到首页扫码点餐',
         showCancel: false, //去掉取消按钮
-        success: function (res) {
+        success: function(res) {
           if (res.confirm) {
             wx.switchTab({
               url: '../index/index',
@@ -437,13 +450,13 @@ Page({
     let userInfo = app.globalData.userInfo ? app.globalData.userInfo : (app.globalData.userInfo = wx.getStorageSync('user'), wx.getStorageSync('user'));
 
     if (!userInfo || !token) {
-      
-    
+
+
       wx.showModal({
         title: '请登录',
         content: '请到个人中心登录',
         showCancel: false, //去掉取消按钮
-        success: function (res) {
+        success: function(res) {
           if (res.confirm) {
             // wx.switchTab({
             //   url: '../me/me',
@@ -461,50 +474,61 @@ Page({
       url: '../confirmOrder/confirmOrder?tableNum=' + tableNum
     })
   },
-  GetQueryString: function (name) {
+  GetQueryString: function(name) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
     var r = window.location.search.substr(1).match(reg);
     if (r != null) return unescape(r[2]);
     return null;
   },
- showInput: function () {
+  showInput: function() {
     this.setData({
       inputShowed: true
     });
   },
-  hideInput: function () {
+  hideInput: function() {
     this.setData({
       inputVal: "",
       inputShowed: false
     });
     // getList(this);
   },
-  clearInput: function () {
+  clearInput: function() {
     this.setData({
       inputVal: ""
     });
     // getList(this);
   },
-  inputTyping: function (e) {
+  inputTyping: function(e) {
     //搜索数据
     // getList(this, e.detail.value);
     this.setData({
       inputVal: e.detail.value
     });
   },
-  chooseTaste: function (e){
+  chooseTaste: function(e) {
     var that = this
-    that.setData({
-      taste: e.currentTarget.id
-    })
+    let temparray = that.data.tastearray
+    if (e.currentTarget.id == this.data.taste) {
+      temparray[e.currentTarget.id].checked = false
+      that.setData({
+        taste: undefined,
+        tastearray: temparray
+      })
+    } else {
+      temparray[e.currentTarget.id].checked = true
+      that.setData({
+        taste: e.currentTarget.id,
+        tastearray: temparray
+      })
+    }
     categories = []
     // 获取右侧菜品列表数据
     var resFood = []
     wx.request({
       url: app.globalData.baseUrl + '/buyer/product/list',
-      data: {
-        taste: e.currentTarget.id
-      },
+      data: that.data.taste ? {
+        taste: that.data.taste
+      } : '',
       success(res) {
         if (res && res.data && res.data.data && res.data.data.length > 0) {
           let dataList = res.data.data;
@@ -525,20 +549,20 @@ Page({
           that.setData({
             menu_list: categories,
             foodList: resFood,
-            inputShowed: false,
+            inputShowed: false
           })
         } else {
           that.setData({
             menu_list: [],
             foodList: [],
-            inputShowed: false,
+            inputShowed: false
           })
           wx.showLoading({
             title: '数据为空',
           })
-          setTimeout(function(){
+          setTimeout(function() {
             wx.hideLoading()
-          },2000)
+          }, 2000)
         }
       }
     });
