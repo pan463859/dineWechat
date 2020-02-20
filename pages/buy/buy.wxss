@@ -187,7 +187,7 @@
 .cai_price {
   font-weight: bold;
   font-size: 32rpx;
-  color: #25ccf7 ;
+  color: #25ccf7;
 }
 
 /*人民币符号*/
@@ -230,13 +230,14 @@
   left: 0;
   bottom: 0px;
   z-index: 100;
-  background-color: #25ccf7 ;
+  background-color: LightBLue;
 }
 
 .shop_cartBox {
   width: 110rpx;
+  border: 1px solid white;
   height: 110rpx;
-  background-color: #25ccf7 ;
+  background-color: #25ccf7;
   border-radius: 50%;
   position: absolute;
   top: -50rpx;
@@ -275,7 +276,7 @@
 }
 
 .fontP {
-  color: #25ccf7 ;
+  color: #25ccf7;
   font-size: 40rpx;
 }
 
@@ -307,12 +308,12 @@
 
 .shopcart_title {
   width: 100%;
-  height: 70rpx;
+  height: 80rpx;
   line-height: 80rpx;
   text-align: center;
   position: fixed;
   left: 0;
-  background-color: #ff9600;
+  background-color: #25ccf7;
   color: #fff;
 }
 
@@ -365,7 +366,8 @@
   margin-left: 40rpx;
   font-size: 14px;
   padding-bottom: 10rpx;
-  color: #ff9600;
+  color: #25ccf7
+;
 }
 
 .price-box {
@@ -546,6 +548,7 @@
 
 .weui-search-bar {
   position: fixed;
+  padding: 5px 8px 5px;
   background: #eee;
   padding-top: 240rpx;
   display: -webkit-box;
@@ -637,7 +640,7 @@
   align-items: center;
   justify-content: space-between;
   background-color: white;
-  padding-top:290rpx;
+  padding-top: 290rpx;
 }
 
 .weui-search-bar__taste_button {
@@ -655,9 +658,11 @@
   background: #ebebeb;
   overflow: auto;
 }
-.button_select{
+
+.button_select {
   border: 1px solid blue;
 }
-.button_unselect{
+
+.button_unselect {
   border: none;
 }

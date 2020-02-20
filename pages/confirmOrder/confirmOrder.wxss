@@ -252,7 +252,7 @@
   text-align: center;
   position: fixed;
   left: 0;
-  background-color: #ff9600;
+  background-color: #25ccf7;
   color: #fff;
 }
 
