@@ -509,13 +509,21 @@ Page({
     var that = this
     let temparray = that.data.tastearray
     if (e.currentTarget.id == this.data.taste) {
-      temparray[e.currentTarget.id].checked = false
+      for (let i = 0; i < temparray.length; i++) {
+        temparray[i].checked = false
+      }
       that.setData({
         taste: undefined,
         tastearray: temparray
       })
     } else {
-      temparray[e.currentTarget.id].checked = true
+      for (let i = 0; i < temparray.length; i++) {
+        if (i == e.currentTarget.id) {
+          temparray[i].checked = true
+        } else {
+          temparray[i].checked = false
+        }
+      }
       that.setData({
         taste: e.currentTarget.id,
         tastearray: temparray
