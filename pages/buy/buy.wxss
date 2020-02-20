@@ -133,10 +133,8 @@
 .right-cont {
   float: right;
   width: 77%;
-  padding-bottom: 1000px;
-  margin-bottom: -1000px;
+  margin-bottom: 34px;
   background: #ebebeb;
-  overflow: hidden;
 }
 
 .img_box {
