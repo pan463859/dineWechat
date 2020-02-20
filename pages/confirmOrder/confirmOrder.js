@@ -15,7 +15,6 @@ let payWay = [{
 Page({
   //页面的初始数据
   data: {
-    tableNum: "",
     address: "",
     confirmOrder: [],
     // 输入框中的用餐人数
@@ -36,14 +35,12 @@ Page({
   // 生命周期函数--监听页面加载
   onLoad: function(Options) {
     var that = this;
-    let tableNum = Options.tableNum;
     var arr = wx.getStorageSync('cart') || [];
     for (var i in arr) {
       this.data.totalPrice += arr[i].quantity * arr[i].price;
       this.data.totalNum += arr[i].quantity
     }
     this.setData({
-      tableNum: tableNum,
       cartList: arr,
       totalPrice: this.data.totalPrice.toFixed(2),
       totalNum: this.data.totalNum
@@ -134,7 +131,7 @@ Page({
   //提交订单
   submitOrder: function(e) {
     var that = this;
-    var tableNum = that.data.tableNum;
+    var tableNum = '1';
 
     var arr = wx.getStorageSync('cart') || [];
 
@@ -160,10 +157,6 @@ Page({
       })
     }
     var peoples = this.data.diner_num
-    console.log("用餐人数：" + peoples)
-    console.log("备注：" + remarks)
-    console.log("桌号" + tableNum)
-
     wx.request({
       url: app.globalData.baseUrl + '/buyer/order/create',
       method: "POST",

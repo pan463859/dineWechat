@@ -4,7 +4,6 @@
     "pages/me/me",
     "pages/mycomment/mycomment",
     "pages/myOrder/myOrder",
-    "pages/buy/buy",
     "pages/change/change",
     "pages/confirmOrder/confirmOrder",
     "pages/login/login",
@@ -25,12 +24,6 @@
     "selectedColor": "#25CCF7",
     "borderStyle": "white",
     "list": [
-      {
-        "selectedIconPath": "image/home-s.jpg",
-        "iconPath": "image/home.jpg",
-        "pagePath": "pages/index/index",
-        "text": "首页"
-      },
       {
         "selectedIconPath": "/image/order-s.jpg",
         "iconPath": "/image/order.jpg",
