@@ -29,7 +29,7 @@
 
 .navbar .item.active {
  color: #333;
- border-bottom: 6rpx solid #d66058;
+ border-bottom: 6rpx solid #25ccf7 ;
 }
 
 /* 字体 */

@@ -10,8 +10,8 @@
   padding: 200rpx 0;
   box-sizing: border-box;
 } 
-.bc_green{
-  background-color: #ff9600;
+.bc_blue{
+  background-color: #25ccf7;
 }
 .bc_white{
    background-color: #ffffff;

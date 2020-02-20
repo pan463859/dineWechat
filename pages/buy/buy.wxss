@@ -13,8 +13,8 @@
   box-sizing: border-box;
 }
 
-.bc_green {
-  background-color: #ff9600;
+.bc_blue {
+  background-color: #25ccf7;
 }
 
 .bc_white {
@@ -118,7 +118,7 @@
 
 .active {
   background-color: #fff;
-  border-left: 6rpx #ff6000 solid;
+  border-left: 6rpx #25ccf7 solid;
 }
 
 /*右侧  */
@@ -187,7 +187,7 @@
 .cai_price {
   font-weight: bold;
   font-size: 32rpx;
-  color: #ff9600;
+  color: #25ccf7 ;
 }
 
 /*人民币符号*/
@@ -230,13 +230,13 @@
   left: 0;
   bottom: 0px;
   z-index: 100;
-  background-color: #fef4d1;
+  background-color: #25ccf7 ;
 }
 
 .shop_cartBox {
   width: 110rpx;
   height: 110rpx;
-  background-color: #ff9600;
+  background-color: #25ccf7 ;
   border-radius: 50%;
   position: absolute;
   top: -50rpx;
@@ -275,7 +275,7 @@
 }
 
 .fontP {
-  color: #ff9600;
+  color: #25ccf7 ;
   font-size: 40rpx;
 }
 
@@ -563,6 +563,7 @@
 
 .weui-icon-search_in-box {
   position: absolute;
+  color: #25ccf7;
   left: 10px;
   top: 7px;
 }

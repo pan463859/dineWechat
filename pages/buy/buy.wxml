@@ -2,7 +2,7 @@
 <view class="page">
   <!-- 顶部店家logo -->
   <view class="weui-panel__bd posi_fiexd">
-    <navigator url="" class="weui-media-box weui-media-box_appmsg new_padd  bc_green" hover-class="none">
+    <navigator url="" class="weui-media-box weui-media-box_appmsg new_padd  bc_blue" hover-class="none">
       <view class="weui-media-box__hd weui-media-box__hd_in-appmsg" style="width:120rpx;height:120rpx">
         <image class="weui-media-box__thumb bd_radius" src="../../image/logo60.png" />
       </view>
@@ -72,7 +72,7 @@
             <image class="shopCart_img" src="../../image/shopCart.png"></image>
           </view>
           <view class="all_money">总计：{{totalPrice}}元，{{totalNum}}件</view>
-          <view class="choose_ok  bc_green" bindtap="gotoOrder">选好了</view>
+          <view class="choose_ok  bc_blue" bindtap="gotoOrder">选好了</view>
         </view>
       </view>
       <!--搜索框 -->
@@ -87,7 +87,7 @@
         <view class="weui-search-bar__form">
           <!--点击之后，出现input框 -->
           <view class="weui-search-bar__box">
-            <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+            <icon class="weui-icon-search_in-box" type="search" size="14" color='#25ccf7'></icon>
             <input type="text" class="weui-search-bar__input" placeholder="搜索" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" />
             <!--输入款字数大于0，则显示清除按钮 -->
             <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
@@ -96,7 +96,7 @@
           </view>
           <!--没点击之前，只是一些文字和图标 -->
           <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
-            <icon class="weui-icon-search" type="search" size="14"></icon>
+            <icon class="weui-icon-search" type="search" color='#25ccf7' size="14"></icon>
             <view class="weui-search-bar__text">搜索</view>
           </label>
         </view>

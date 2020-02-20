@@ -33,7 +33,7 @@
 
 .navbar .item.active {
  color: #333;
- border-bottom: 6rpx solid #d66058;
+ border-bottom: 6rpx solid #25ccf7 ;
 }
 
 /* 字体 */
@@ -49,17 +49,38 @@
 }
 
 /* 全部 */
-
-.cont_count {
- padding-top: 6rpx;
+.cont_nocount{
+  padding-top: 6rpx;
  position: relative;
  display: flex;
  flex-direction: column;
- width: 100%;
  text-align: center;
  /* height: 620rpx; *//* border-bottom: 6rpx solid #ddd; */
  margin-bottom: 6rpx;
  background-color: #fff;
+ margin-left: 16rpx;
+ margin-right: 16rpx;
+ padding-left: 16rpx;
+ padding-right: 16rpx;
+}
+.cont_count {
+ padding-top: 6rpx;
+ position: relative;
+ overflow: hidden;
+ display: flex;
+ flex-direction: column;
+ text-align: center;
+ /* height: 620rpx; *//* border-bottom: 6rpx solid #ddd; */
+ margin-bottom: 6rpx;
+ background-color: #fff;
+ margin-left: 16rpx;
+ margin-right: 16rpx;
+ padding-left: 16rpx;
+ padding-right: 16rpx;
+ border: 1px solid #25ccf7 ;
+}
+.cont_count:first-child{
+  margin-top: 16rpx;
 }
 
 /* 编号 */
@@ -172,7 +193,7 @@
 
 .cont_ce_mon {
  font-size: 36rpx;
- color: red;
+ color: #25ccf7 ;
 }
 
 /* 总计金额 */
