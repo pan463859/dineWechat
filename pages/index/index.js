@@ -38,7 +38,7 @@ Page({
       }
     ],
     searchfoodList: [],
-    banner:[],
+    banner: [],
     sliderWidth: 0.5,
     // 左右两侧菜单的初始显示次序
     curNav: 0,
@@ -448,6 +448,9 @@ Page({
       return;
 
     }
+    wx.navigateTo({
+      url: '../confirmOrder/confirmOrder'
+    })
   },
   GetQueryString: function(name) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
