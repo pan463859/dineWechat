@@ -15,7 +15,10 @@ let payWay = [{
 Page({
   //页面的初始数据
   data: {
+    couponlist: [],
+    tableNum: "",
     address: "",
+    addressdetail: "",
     confirmOrder: [],
     // 输入框中的用餐人数
     diner_num: 0,
@@ -28,12 +31,29 @@ Page({
     // 购物车数据
     cartList: [],
     totalPrice: 0,
+    couponMoney: 0,
+    useCouponId: "",
     totalNum: 0,
     // 遮罩
     maskFlag: true,
   },
+
+  radioChange: function (e) {
+    var that = this
+    console.log('radio发生change事件，携带value值为：', e.detail.value)
+    for (var i in that.data.couponlist) {
+      if (that.data.couponlist[i].id == e.detail.value) {
+        var couponMoney = that.data.couponlist[i].money
+        that.setData({
+          couponMoney: couponMoney,
+          useCouponId: e.detail.value
+        })
+      }
+    }
+  },
+
   // 生命周期函数--监听页面加载
-  onLoad: function(Options) {
+  onLoad: function (Options) {
     var that = this;
     var arr = wx.getStorageSync('cart') || [];
     for (var i in arr) {
@@ -46,7 +66,6 @@ Page({
       totalNum: this.data.totalNum
     })
 
-  
     // wx.getSystemInfo({
     //   success: function (res) {
     //     that.setData({
@@ -57,11 +76,29 @@ Page({
     // });
   },
 
-  onShow: function() {
-    this.getAddress()
+
+  onShow: function () {
+    var that = this
+    that.getAddress()
+
+    var token = app._checkToken()
+
+    wx.request({
+      url: app.globalData.baseUrl + '/buyer/product/mine-coupon/list',
+      header: { token: token },
+      success: function (res) {
+        if (res && res.data && res.data.data) {
+          var resultData = res.data.data
+          console.log(resultData)
+          that.setData({
+            couponlist: res.data.data,
+          });
+        }
+      }
+    })
   },
   // 点击数字，输入框出现对应数字
-  getDinnerNUM: function(e) {
+  getDinnerNUM: function (e) {
     var dinnerNum = e.currentTarget.dataset.num;
     var diner_num = this.data.diner_num;
     // 点击“输”，获取焦点，
@@ -77,7 +114,7 @@ Page({
     }
   },
   //打开支付方式弹窗
-  choosePayWay: function() {
+  choosePayWay: function () {
     var payWayList = this.data.payWayList
     var that = this;
     var rd_session = wx.getStorageSync('rd_session') || [];
@@ -103,7 +140,7 @@ Page({
     });
   },
   // 支付方式关闭方法
-  closePayWay: function() {
+  closePayWay: function () {
     var that = this
     // 支付方式关闭动画
     that.animation.translate(0, 285).step();
@@ -115,21 +152,21 @@ Page({
     });
   },
   // 获取输入的用餐人数
-  getDinerNum: function(e) {
+  getDinerNum: function (e) {
     var diner_num = this.data.diner_num;
     this.setData({
       diner_num: diner_num
     })
   },
   // 获取备注信息
-  getRemark: function(e) {
+  getRemark: function (e) {
     var remarks = this.data.remarks;
     this.setData({
       remarks: e.detail.value
     })
   },
   //提交订单
-  submitOrder: function(e) {
+  submitOrder: function (e) {
     var that = this;
     var tableNum = '1';
 
@@ -166,11 +203,12 @@ Page({
       data: {
         openid: app.globalData.openid,
         name: app.globalData.userInfo.username,
+        couponId: this.data.useCouponId,
         phone: this.data.address.telNumber,
-        address: tableNum,
+        address: this.data.addressdetail,
         items: goods_josn
       },
-      success: function(res) {
+      success: function (res) {
         // var rescode = res.data.code
         console.log("支付成功", res.data)
         if (res && res.data && res.data.data) {
@@ -207,17 +245,18 @@ Page({
     })
 
   },
-  dealAddress:function(data){
-    let tempaddress=''
+  dealAddress: function (data) {
+    let tempaddress = ''
     tempaddress = data.provinceName + data.cityName + data.countyName + data.detailInfo
     return tempaddress
   },
-  getAddress: function() {
+  getAddress: function () {
     var that = this
     let curAddress = wx.getStorageSync('address')
     let token = app._checkToken()
     that.setData({
-      address: this.dealAddress(curAddress)
+      addressdetail: this.dealAddress(curAddress),
+      address: curAddress
     });
     if (!curAddress) {
       wx.request({
@@ -230,12 +269,13 @@ Page({
           if (response.data.data) {
             wx.setStorageSync('address', response.data.data)
             that.setData({
-              address: this.dealAddress(curAddress)
+              addressdetail: this.dealAddress(curAddress),
+              address: curAddress
             });
           } else {
             that.address()
           }
-         
+
         }
       })
     }
@@ -258,7 +298,8 @@ Page({
               console.log(response.data.data)
               wx.setStorageSync('address', response.data.data)
               that.setData({
-                address: this.dealAddress(curAddress)
+                addressdetail: this.dealAddress(curAddress),
+                address: curAddress
               });
             }
           })

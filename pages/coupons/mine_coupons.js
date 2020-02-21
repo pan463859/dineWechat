@@ -9,8 +9,8 @@ Page({
   gotoUse: function (e) {
     var that = this
     console.log(e.target.dataset.id)
-    wx.navigateTo({
-      url: '../buy/buy',
+    wx.switchTab({
+      url: '../index/index',
     })
 
   },

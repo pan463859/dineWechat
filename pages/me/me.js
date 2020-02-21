@@ -47,9 +47,9 @@ Page({
             },
             method: "post",
             data: res,
-            success: function(response) {
-              console.log(responese.data.data)
-              wx.setStorageSync('address', responese.data.data)
+            success: function(responset) {
+              console.log(responset.data.data)
+              wx.setStorageSync('address', responset.data.data)
             }
           })
         },

@@ -66,8 +66,8 @@ Page({
 
 
 
-                  wx.redirectTo({
-                    url: "../buy/buy"
+                  wx.switchTab({
+                    url: "../index/index"
                   })
 
                 }
@@ -153,8 +153,8 @@ Page({
             wx.setStorageSync("token", token),
             wx.setStorageSync('openid', openId),
             wx.setStorageSync('user', userInfo);
-            wx.redirectTo({
-              url: "../buy/buy"
+            wx.switchTab({
+              url: "../index/index"
             })
           } else {
             wx.showModal({
