@@ -25,6 +25,12 @@
     "borderStyle": "white",
     "list": [
       {
+        "selectedIconPath": "/image/home-s.jpg",
+        "iconPath": "/image/home.jpg",
+        "pagePath": "pages/index/index",
+        "text": "点餐"
+      },
+      {
         "selectedIconPath": "/image/order-s.jpg",
         "iconPath": "/image/order.jpg",
         "pagePath": "pages/myOrder/myOrder",

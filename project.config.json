@@ -49,7 +49,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 7,
+			"current": 8,
 			"list": [
 				{
 					"id": 1,
@@ -104,6 +104,13 @@
 					"id": -1,
 					"name": "个人信息页面",
 					"pathName": "pages/myInfo/myInfo",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的信息",
+					"pathName": "pages/me/me",
 					"scene": null
 				}
 			]
