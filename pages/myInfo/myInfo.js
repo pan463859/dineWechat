@@ -9,6 +9,7 @@ Page({
     sexs: ['男', '女'],
     region: [],
     selfinfo: {},
+    namestatus: false,
     index: 0,
     customItem: '全部'
   },
@@ -22,17 +23,36 @@ Page({
     })
     this.updateUserInfo(temp)
   },
+  changeNameStatus: function(e) {
+    this.setData({
+      namestatus: true
+    })
+  },
+  changeName: function(e) {
+    let temp = {}
+    temp.username = e.detail.value
+    this.updateUserInfo(temp)
+    this.setData({
+      namestatus: false,
+      selfinfo: {
+        ...this.data.selfinfo,
+        ...temp
+      }
+    })
+  },
   changeRegion: function(e) {
     let temp = {}
     temp.province = e.detail.value[0]
     temp.city = e.detail.value[1]
+    temp.county = e.detail.value[2]
     this.setData({
       selfinfo: { ...this.data.selfinfo,
         ...temp
       }
     })
+    debugger
     this.setData({
-      region: [temp.province, temp.city, '龙岗区']
+      region: [temp.province, temp.city, temp.county]
     })
     this.updateUserInfo(temp)
   },
@@ -68,7 +88,7 @@ Page({
       success: function(response) {
         that.setData({
           selfinfo: response.data.data,
-          region: [response.data.data.province, response.data.data.city, '龙岗区']
+          region: [response.data.data.province, response.data.data.city, response.data.data.county]
         })
       },
       fail: function(err) {

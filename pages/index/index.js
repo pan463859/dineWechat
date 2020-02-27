@@ -59,6 +59,21 @@ Page({
     maskFlag: true,
 
   },
+  onShow() {
+    var arr = wx.getStorageSync('cart');
+    if (arr =="") {
+      for (var i in this.data.foodList) {
+        this.data.foodList[i].quantity = 0;
+      }
+      this.setData({
+        foodList: this.data.foodList,
+        cartList: [],
+        cartFlag: false,
+        totalNum: 0,
+        totalPrice: 0,
+      })
+    }
+  },
   onLoad: function(options) {
     this.getTopBanner();
     var that = this

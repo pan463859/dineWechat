@@ -12,7 +12,10 @@
 .name {
   margin-top: 24px;
 }
-
+.inputname{
+  margin-top: 24px;
+  border-color: red;
+}
 .inforom {
   text-align: center;
 }

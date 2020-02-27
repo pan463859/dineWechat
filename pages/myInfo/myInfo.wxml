@@ -1,10 +1,12 @@
 <view class="container">
   <image lazy-load mode="widthFix" class='avator' src="{{selfinfo.avatarUrl}}"></image>
-  <view class='name'>{{selfinfo.username}}</view>
+
+  <view wx:if="{{namestatus==false}}" class='name' bindtap="changeNameStatus">{{selfinfo.username}}</view>
+  <input bindblur="changeName" wx:if="{{namestatus==true}}" maxlength='10'  class='inputname' value="{{selfinfo.username}}"> </input>
   <view class="inforom">
     <picker class='gender' bindchange="changeSex" value="{{sexs}}" range="{{sexs}}">
       <view class="picker">
-        {{sexs[selfinfo.gender]}}
+        {{sexs[selfinfo.gender]?sexs[selfinfo.gender]:'未知'}}
       </view>
     </picker>
     <picker class='location' mode="region" bindchange="changeRegion" value="{{region}}" custom-item="{{customItem}}">
